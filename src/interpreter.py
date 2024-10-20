@@ -1,7 +1,7 @@
 from .lexer import Lexer
 
-def run(text):
-    lexer = Lexer(text)
-    tokens, error = lexer.make_tokens()
+def run(text, fn: str):
+    lexer = Lexer(text, fn)
+    tokens, error = lexer.make_tokens() # make_tokens() is expected to return two values
     
     return tokens, error

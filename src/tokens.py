@@ -14,11 +14,20 @@ TT_RPAREN = 'RPAREN'
 TT_EOF = 'EOF'
 
 class Tokens:
+    """Represents a token with a type and optional value."""
     def __init__(self, type_: str, value: any = None):
+        """
+        Initializes a token.
+
+        Args:
+            type_ (str): The type of the token.
+            value (any, optional): The value of the token. Defaults to None.
+        """
         self.type = type_
         self.value = value
 
     def __repr__(self) -> str:
+        """Returns a string representation of the token."""
         if self.value:
             return f"{self.type}: {self.value}"
         return f"{self.type}"

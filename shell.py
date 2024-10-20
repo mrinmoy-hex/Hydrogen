@@ -3,12 +3,12 @@ from src.interpreter import run
 def main():
     while True:
         try:
-            text = input("BASIC ~> ")
+            text = input("HYDRO ~> ")
             if text.lower() in ['exit', 'quit']:
                 print("Exiting the interpreter.")
                 break
             
-            result, error = run(text)
+            result, error = run(text, "<stdin>")
             if error:
                 print(error.__str__())
             else:

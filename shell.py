@@ -1,4 +1,4 @@
-from src.interpreter import run
+from src import run
 
 def main():
     while True:

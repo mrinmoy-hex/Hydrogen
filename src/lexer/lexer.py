@@ -1,7 +1,7 @@
 # imports
 from .tokens import *
-from .errors import IllegalCharError
-from .position import Position
+from ..errors.errors import IllegalCharError
+from ..errors.position import Position
 
 class Lexer:
     """Tokenizes input text into a list of tokens."""

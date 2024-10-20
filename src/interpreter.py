@@ -1,4 +1,4 @@
-from .lexer import Lexer
+from .lexer.lexer import Lexer
 
 def run(text, fn: str):
     lexer = Lexer(text, fn)

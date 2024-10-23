@@ -46,22 +46,22 @@ class Lexer:
                 tokens.append(self.make_numbers())
 
             elif self.current_char == '+':
-                tokens.append(Tokens(TT_PLUS))
+                tokens.append(Tokens(TT_PLUS, pos_start=self.pos))
                 self.advance()
             elif self.current_char == '-':
-                tokens.append(Tokens(TT_MINUS))
+                tokens.append(Tokens(TT_MINUS, pos_start=self.pos))
                 self.advance()
             elif self.current_char == '*':
-                tokens.append(Tokens(TT_MUL))
+                tokens.append(Tokens(TT_MUL, pos_start=self.pos))
                 self.advance()
             elif self.current_char == '/':
-                tokens.append(Tokens(TT_DIV))
+                tokens.append(Tokens(TT_DIV, pos_start=self.pos))
                 self.advance()
             elif self.current_char == '(':
-                tokens.append(Tokens(TT_LPAREN))
+                tokens.append(Tokens(TT_LPAREN, pos_start=self.pos))
                 self.advance()
             elif self.current_char == ')':
-                tokens.append(Tokens(TT_RPAREN))
+                tokens.append(Tokens(TT_RPAREN, pos_start=self.pos))
                 self.advance()
                 
             else:
@@ -69,7 +69,7 @@ class Lexer:
                 char = self.current_char
                 return [], IllegalCharError(pos_start, pos_end=self.pos, details=f"'{char}' is not a valid character.")    # return empty list of token for illegal character
         
-        tokens.append(Tokens(TT_EOF))        
+        tokens.append(Tokens(TT_EOF, pos_start=self.pos))        
         return tokens, None
     
     
@@ -81,6 +81,8 @@ class Lexer:
         """
         dot_count: int = 0
         num_str: str = ''
+        pos_start = self.pos.copy()
+        
         # looping through digits or .
         while self.current_char is not None and (self.current_char.isdigit() or self.current_char == '.'):
             if self.current_char == '.':
@@ -96,9 +98,9 @@ class Lexer:
         
         # logic to decide whether to return int token or float
         if dot_count == 0:
-            return Tokens(TT_INT, int(num_str))
+            return Tokens(TT_INT, int(num_str), pos_start, self.pos)
         else:
-            return Tokens(TT_FLOAT, float(num_str))
+            return Tokens(TT_FLOAT, float(num_str), pos_start, self.pos)
 
 
 

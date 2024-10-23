@@ -17,7 +17,7 @@ class Position:
         self.file_name = file_name
         self.filetxt = filetxt      
         
-    def advance(self, current_char):
+    def advance(self, current_char=None):
         """Advances the position based on the current character.
 
         Args:
